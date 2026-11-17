@@ -63,12 +63,12 @@ export default function GlassNavbar({ themeId, onThemeChange, onOpenCmd }) {
       >
         <a
           href="#overview"
-          className="flex items-center gap-2.5 rounded-full py-1 pl-1 pr-2 transition hover:opacity-90"
+          className="flex shrink-0 items-center gap-2.5 rounded-full py-1 pl-1 pr-2 transition hover:opacity-90"
         >
-          <span className="glass-chip flex h-8 w-8 items-center justify-center rounded-full font-display text-xs font-extrabold tracking-wider text-white">
+          <span className="glass-chip flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-display text-xs font-extrabold tracking-wider text-white">
             SAR
           </span>
-          <span className="hidden flex-col sm:flex">
+          <span className="hidden flex-col whitespace-nowrap sm:flex">
             <span className="font-display text-xs font-bold tracking-wide text-white">
               S. ABDUL RAQEEB
             </span>
@@ -76,34 +76,34 @@ export default function GlassNavbar({ themeId, onThemeChange, onOpenCmd }) {
           </span>
         </a>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {NAV_LINKS.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="rounded-full px-3.5 py-1.5 text-xs font-medium text-slate-200/85 transition hover:bg-white/15 hover:text-white"
+              className="whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-medium text-slate-200/85 transition hover:bg-white/15 hover:text-white"
             >
               {item.label}
             </a>
           ))}
         </div>
 
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <button
             type="button"
             onClick={cycleTheme}
             title={`Switch Prism Mood (${PRISM_THEMES[themeId]?.label})`}
-            className="glass-chip flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium text-white transition hover:bg-white/20"
+            className="glass-chip flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium text-white transition hover:bg-white/20"
           >
             <Palette className="h-3.5 w-3.5 text-cyan-300" />
-            <span className="hidden lg:inline">{PRISM_THEMES[themeId]?.label}</span>
+            <span className="hidden xl:inline">{PRISM_THEMES[themeId]?.label}</span>
           </button>
 
           <button
             type="button"
             onClick={onOpenCmd}
             aria-label="Open Command Palette"
-            className="glass-chip flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[11px] text-slate-100 transition hover:bg-white/20"
+            className="glass-chip flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 font-mono text-[11px] text-slate-100 transition hover:bg-white/20"
           >
             <Command className="h-3.5 w-3.5 text-violet-300" />
             <span className="hidden sm:inline">Ctrl K</span>
@@ -112,7 +112,7 @@ export default function GlassNavbar({ themeId, onThemeChange, onOpenCmd }) {
           <button
             type="button"
             onClick={handleCopyEmail}
-            className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-cyan-400 via-violet-500 to-fuchsia-500 px-3.5 py-1.5 text-xs font-bold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:brightness-110"
+            className="flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-r from-cyan-400 via-violet-500 to-fuchsia-500 px-3.5 py-1.5 text-xs font-bold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:brightness-110"
           >
             {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
             <span>{copied ? 'Copied!' : 'Email'}</span>

@@ -56,12 +56,10 @@ export default function ProjectsShowcase({ onSelectProject }) {
           const isWide = idx === 0 || (filtered.length % 2 === 1 && idx === filtered.length - 1);
           return (
             <motion.div
-              key={project.id}
-              layout
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: idx * 0.06 }}
+              key={`${activeCategory}-${project.id}`}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: idx * 0.05 }}
               className={isWide ? 'lg:col-span-7' : 'lg:col-span-5'}
             >
               <GlassCard

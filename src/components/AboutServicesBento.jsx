@@ -46,10 +46,10 @@ export default function AboutServicesBento() {
           return (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 22 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.55, delay: index * 0.08 }}
+              viewport={{ once: true, amount: 'some' }}
+              transition={{ duration: 0.4, delay: index * 0.06 }}
             >
               <GlassCard prismBeam={index === 0} className="h-full p-6 sm:p-7">
                 <div className="flex items-start justify-between gap-4">

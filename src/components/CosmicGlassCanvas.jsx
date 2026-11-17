@@ -25,7 +25,7 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
 
     const width = window.innerWidth;
     const height = window.innerHeight;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.setSize(width, height);
     container.appendChild(renderer.domElement);
 
@@ -47,22 +47,28 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
     const group = new THREE.Group();
     scene.add(group);
 
-    // Core faceted glass crystal
-    const crystalGeo = new THREE.IcosahedronGeometry(2.35, 1);
+    // Core faceted holographic glass prism (lightweight single-pass transparent material)
+    const crystalGeo = new THREE.IcosahedronGeometry(2.1, 1);
     const crystalMat = new THREE.MeshPhysicalMaterial({
-      color: 0xffffff,
-      roughness: 0.08,
-      metalness: 0.12,
-      transmission: 0.72,
-      thickness: 1.8,
+      color: palette.wireA,
+      emissive: palette.wireB,
+      emissiveIntensity: 0.28,
+      roughness: 0.14,
+      metalness: 0.35,
       iridescence: 1.0,
-      iridescenceIOR: 1.6,
       clearcoat: 1.0,
       transparent: true,
-      opacity: 0.72,
+      opacity: 0.22,
     });
     const crystalMesh = new THREE.Mesh(crystalGeo, crystalMat);
-    group.add(crystalMesh);
+    const crystalWireMat = new THREE.MeshBasicMaterial({
+      color: palette.wireA,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.34,
+    });
+    const crystalWire = new THREE.Mesh(crystalGeo, crystalWireMat);
+    group.add(crystalMesh, crystalWire);
 
     // Outer holographic wireframe cage
     const cageGeo = new THREE.TorusKnotGeometry(3.35, 0.11, 140, 20, 2, 3);
@@ -123,7 +129,7 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
-    refs.current = { lightA, lightB, lightC, cageMat, ringMat, particleMat };
+    refs.current = { lightA, lightB, lightC, cageMat, ringMat, particleMat, crystalMat, crystalWireMat };
 
     const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
     const onPointerMove = (e) => {
@@ -156,6 +162,7 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
       if (!prefersReduced) {
         crystalMesh.rotation.x = t * 0.16 + pointer.y * 0.35;
         crystalMesh.rotation.y = t * 0.22 + pointer.x * 0.45;
+        crystalWire.rotation.copy(crystalMesh.rotation);
         cageMesh.rotation.x = -t * 0.1 + scrollRatio * 1.4;
         cageMesh.rotation.y = t * 0.15;
         ringA.rotation.z = t * 0.18;
@@ -190,6 +197,7 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
       window.removeEventListener('resize', onResize);
       crystalGeo.dispose();
       crystalMat.dispose();
+      crystalWireMat.dispose();
       cageGeo.dispose();
       cageMat.dispose();
       ringGeo.dispose();
@@ -207,7 +215,7 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
   // Update WebGL shader & light colors seamlessly when user switches Prism Mood theme
   useEffect(() => {
     const palette = PRISM_THEMES[themeId]?.three;
-    const { lightA, lightB, lightC, cageMat, ringMat, particleMat } = refs.current;
+    const { lightA, lightB, lightC, cageMat, ringMat, particleMat, crystalMat, crystalWireMat } = refs.current;
     if (!palette || !lightA) return;
     lightA.color.setHex(palette.lightA);
     lightB.color.setHex(palette.lightB);
@@ -217,6 +225,9 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
     ringMat.color.setHex(palette.wireB);
     ringMat.emissive.setHex(palette.wireB);
     particleMat.color.setHex(palette.particles);
+    crystalMat.color.setHex(palette.wireA);
+    crystalMat.emissive.setHex(palette.wireB);
+    crystalWireMat.color.setHex(palette.wireA);
   }, [themeId]);
 
   const theme = PRISM_THEMES[themeId] || PRISM_THEMES.cosmic;

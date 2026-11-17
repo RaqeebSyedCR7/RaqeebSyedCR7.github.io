@@ -40,10 +40,10 @@ export default function ExperienceTimeline() {
           return (
             <motion.div
               key={exp.id}
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.45, delay: idx * 0.06 }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 'some' }}
+              transition={{ duration: 0.35, delay: idx * 0.04 }}
               className="relative"
             >
               <span

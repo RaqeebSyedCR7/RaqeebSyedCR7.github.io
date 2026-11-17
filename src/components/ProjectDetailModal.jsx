@@ -27,7 +27,7 @@ export default function ProjectDetailModal({ project, onClose }) {
       onClick={onClose}
     >
       <div
-        className="glass-panel-strong prism-border-beam max-h-[88vh] w-full max-w-3xl overflow-y-auto rounded-3xl p-6 sm:p-8"
+        className="glass-panel-strong prism-border-beam max-h-[88vh] w-full max-w-3xl overflow-y-auto overflow-x-hidden rounded-3xl p-6 sm:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-4">
@@ -60,8 +60,10 @@ export default function ProjectDetailModal({ project, onClose }) {
 
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {project.metrics.map((m) => (
-            <div key={m.k} className="glass-panel rounded-2xl p-3.5">
-              <div className="font-display text-lg font-extrabold text-cyan-300">{m.v}</div>
+            <div key={m.k} className="glass-panel min-w-0 rounded-2xl p-3.5">
+              <div className="break-words font-display text-base font-extrabold text-cyan-300 sm:text-lg">
+                {m.v}
+              </div>
               <div className="mt-0.5 font-mono text-[11px] text-slate-300">{m.k}</div>
             </div>
           ))}
