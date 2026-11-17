@@ -119,7 +119,7 @@ export default function GlassNavbar({ themeId, onThemeChange, onOpenCmd }) {
             </span>
             <span className="hidden flex-col whitespace-nowrap sm:flex">
               <span className="text-ink font-display text-xs font-bold tracking-wide">
-                S. ABDUL RAQEEB
+                SYED ABDUL RAQEEB
               </span>
               <span className="text-accent font-mono text-[10px] font-medium">{dubaiTime}</span>
             </span>

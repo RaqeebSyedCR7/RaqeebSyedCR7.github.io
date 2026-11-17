@@ -1,22 +1,19 @@
 /**
- * Verified portfolio data sourced from S. Abdul Raqeeb's LinkedIn profile
+ * Verified portfolio data sourced from Syed Abdul Raqeeb's LinkedIn profile
  * (https://www.linkedin.com/in/s-abdul-raqeeb-483a691a0) and active workspace systems.
  */
 
 export const PROFILE = {
-  name: 'S. Abdul Raqeeb',
+  name: 'Syed Abdul Raqeeb',
   monogram: 'SAR',
   pronouns: 'He/Him',
+  degree: 'Bachelors of Computer Application',
   headline: 'Senior Operations Executive @ RAIZ HORIZON | Vibe Coder · AI Developer',
   subHeadline: 'Creative Technologist · Enterprise Database Specialist · Marketing Strategist · Interior Designer',
   location: 'Dubai, United Arab Emirates',
-  availability: 'Open to Work · UAE On-site & Hybrid',
-  followers: '876',
-  connections: '500+',
   manifesto: 'LEVERAGING AI TO ITS FULLEST POTENTIAL IS ACTUAL INTELLIGENCE',
-  avatarUrl: 'https://avatars.githubusercontent.com/u/85108211?v=4',
   about:
-    'With close to 4 years of experience as a results-driven professional holding a BCA degree (8.9 CGPA), I bridge operational leadership, enterprise database engineering, and AI-powered creative development. From maintaining multi-country Daimler database pipelines at CGI to spearheading IT, 3D web experiences, 10-agent AI workflows, and 40% client growth at RAIZ HORIZON in Dubai, I build systems where aesthetic precision meets measurable business scale.',
+    'With close to 4 years of experience as a results-driven professional holding a Bachelors of Computer Application (8.9 CGPA), I bridge operational leadership, enterprise database engineering, and AI-powered creative development. From maintaining multi-country Daimler database pipelines at CGI to spearheading IT, 3D web experiences, 10-agent AI workflows, and 40% client growth at RAIZ HORIZON in Dubai, I build systems where aesthetic precision meets measurable business scale.',
   contact: {
     email: 'raqeebsyed6829@gmail.com',
     uaePhone: '+971 567000529',
@@ -57,7 +54,7 @@ export const IMPACT_KPIS = [
   {
     value: '8.9',
     label: 'BCA CGPA · Sports Boy 2019',
-    source: 'Bengaluru City University',
+    source: 'Bachelors of Computer Application',
   },
 ];
 
@@ -393,8 +390,8 @@ export const EDUCATION = [
     skills: ['SQL', 'Microsoft Power BI', 'Machine Learning', 'Artificial Intelligence'],
   },
   {
-    school: 'Bengaluru City University',
-    degree: "Bachelor's Degree in Computer Science & Information Science (BCA)",
+    school: 'Bachelors of Computer Application',
+    degree: 'Computer Science & Information Science (BCA)',
     dates: 'Apr 2019 — Sep 2022',
     highlight: 'CGPA 8.9 · Sports Boy of the Year 2019',
     activities: 'Cricket, Football, Athletics, Anchoring & Class Representative',

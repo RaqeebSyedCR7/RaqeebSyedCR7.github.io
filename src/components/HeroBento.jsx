@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowDownRight,
@@ -9,7 +8,6 @@ import {
   MapPin,
   ShieldCheck,
   Sparkles,
-  Users,
 } from 'lucide-react';
 import GlassCard from './GlassCard';
 import { IMPACT_KPIS, MARQUEE_BOTTOM, MARQUEE_TOP, PROFILE } from '../data/portfolioData';
@@ -19,8 +17,6 @@ import { IMPACT_KPIS, MARQUEE_BOTTOM, MARQUEE_TOP, PROFILE } from '../data/portf
  * cool paper/sage glass surfaces, KPI telemetry, and smooth kinetic tickers.
  */
 export default function HeroBento() {
-  const [imgError, setImgError] = useState(false);
-
   return (
     <section id="overview" className="relative z-10 mx-auto max-w-7xl px-4 pb-12 pt-28 sm:px-6 sm:pt-32">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-5">
@@ -33,10 +29,6 @@ export default function HeroBento() {
         >
           <GlassCard strong prismBeam className="h-full p-6 sm:p-10">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="glass-chip text-ink inline-flex items-center gap-2 rounded-full px-3.5 py-1 font-mono text-[11px] font-medium">
-                <span className="status-dot" aria-hidden="true" />
-                {PROFILE.availability}
-              </span>
               <span className="glass-chip text-ink-secondary inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[11px]">
                 <MapPin className="text-accent h-3 w-3" />
                 {PROFILE.location}
@@ -51,8 +43,8 @@ export default function HeroBento() {
               <p className="text-accent font-mono text-xs font-medium uppercase tracking-[0.22em]">
                 Senior Operations Executive @ RAIZ HORIZON · Vibe Coder · AI Developer
               </p>
-              <h1 className="text-ink mt-3 font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[4.25rem]">
-                S. ABDUL <span className="text-prism">RAQEEB</span>
+              <h1 className="text-ink mt-3 font-display text-4xl font-extrabold leading-[1.04] tracking-[-0.03em] sm:text-5xl lg:text-[3.85rem]">
+                SYED ABDUL <span className="text-prism">RAQEEB</span>
               </h1>
               <p className="text-ink-secondary mt-5 max-w-2xl text-base leading-relaxed sm:text-[17.5px]">
                 {PROFILE.about}
@@ -100,37 +92,58 @@ export default function HeroBento() {
         >
           <GlassCard prismBeam className="p-6">
             <div className="flex items-center gap-4">
-              <div className="border-glass-line bg-glass-subtle relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border p-0.5">
-                {!imgError ? (
-                  <img
-                    src={PROFILE.avatarUrl}
-                    alt={PROFILE.name}
-                    onError={() => setImgError(true)}
-                    className="h-full w-full rounded-[14px] object-cover"
+              {/* Custom Architectural Executive Crest */}
+              <div className="border-glass-line bg-glass-subtle relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl border p-1.5">
+                <svg viewBox="0 0 96 96" className="h-full w-full" aria-label="Syed Abdul Raqeeb Monogram Crest">
+                  <rect
+                    x="4"
+                    y="4"
+                    width="88"
+                    height="88"
+                    rx="20"
+                    fill="var(--accent-soft)"
+                    stroke="var(--accent)"
+                    strokeWidth="1.5"
+                    strokeOpacity="0.55"
                   />
-                ) : (
-                  <div className="text-ink flex h-full w-full items-center justify-center rounded-[14px] font-display text-xl font-bold">
-                    {PROFILE.monogram}
-                  </div>
-                )}
+                  <polygon
+                    points="48,14 78,31 78,65 48,82 18,65 18,31"
+                    fill="none"
+                    stroke="var(--accent)"
+                    strokeWidth="1.4"
+                    strokeOpacity="0.65"
+                  />
+                  <circle cx="48" cy="48" r="22" fill="none" stroke="var(--ink-muted)" strokeWidth="1" strokeDasharray="3 3" opacity="0.5" />
+                  <text
+                    x="48"
+                    y="54"
+                    textAnchor="middle"
+                    fill="var(--ink-primary)"
+                    fontSize="18"
+                    fontWeight="800"
+                    fontFamily="'Plus Jakarta Sans', sans-serif"
+                    letterSpacing="1.5"
+                  >
+                    SAR
+                  </text>
+                </svg>
               </div>
               <div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="text-ink font-display text-lg font-bold">{PROFILE.name}</span>
                   <span className="glass-chip text-ink-muted rounded-full px-2 py-0.5 font-mono text-[10px]">
                     {PROFILE.pronouns}
                   </span>
                 </div>
-                <p className="text-ink-muted mt-1 text-xs">
-                  BCA · Bengaluru City University
+                <p className="text-ink-secondary mt-1.5 text-xs font-medium">
+                  {PROFILE.degree}
                 </p>
-                <div className="mt-2.5 flex flex-wrap gap-2">
-                  <span className="glass-chip text-ink-secondary inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 font-mono text-[11px]">
-                    <Users className="text-accent h-3 w-3" />
-                    {PROFILE.followers} Followers
+                <div className="mt-2.5 flex flex-wrap gap-1.5">
+                  <span className="glass-chip text-accent rounded-full px-2.5 py-0.5 font-mono text-[10px] font-medium">
+                    AI &amp; Operations
                   </span>
-                  <span className="glass-chip text-ink-secondary rounded-full px-2.5 py-0.5 font-mono text-[11px]">
-                    {PROFILE.connections} Connections
+                  <span className="glass-chip text-ink-secondary rounded-full px-2.5 py-0.5 font-mono text-[10px]">
+                    Dubai, UAE
                   </span>
                 </div>
               </div>

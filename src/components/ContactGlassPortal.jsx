@@ -41,7 +41,7 @@ export default function ContactGlassPortal() {
     }
   };
 
-  const composedText = `Hi S. Abdul Raqeeb,\n\nI'm ${senderName || 'a visitor from your portfolio'} reaching out regarding: ${topic}.\n\n${
+  const composedText = `Hi Syed Abdul Raqeeb,\n\nI'm ${senderName || 'a visitor from your portfolio'} reaching out regarding: ${topic}.\n\n${
     message || 'Would love to connect and collaborate.'
   }`;
 
@@ -236,7 +236,7 @@ export default function ContactGlassPortal() {
       </GlassCard>
 
       <footer className="text-ink-muted mt-10 flex flex-col items-center justify-between gap-3 px-2 font-mono text-xs sm:flex-row">
-        <span>© {new Date().getFullYear()} S. Abdul Raqeeb · Built with Three.js + React + Glassmorphism</span>
+        <span>© {new Date().getFullYear()} Syed Abdul Raqeeb · Built with Three.js + React + Glassmorphism</span>
         <span>Press Ctrl+K anywhere to launch Command Palette</span>
       </footer>
     </section>
