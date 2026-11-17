@@ -22,8 +22,8 @@ const INQUIRY_TOPICS = [
 ];
 
 /**
- * Maximalist contact hub with instant clipboard actions and an interactive brief composer
- * that prepares a structured Email or WhatsApp inquiry.
+ * Architectural contact portal with instant clipboard actions and an interactive
+ * brief composer preparing a structured Email or WhatsApp inquiry.
  */
 export default function ContactGlassPortal() {
   const [copiedField, setCopiedField] = useState('');
@@ -57,13 +57,13 @@ export default function ContactGlassPortal() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Direct Channels Column */}
           <div className="lg:col-span-6">
-            <span className="glass-chip inline-flex items-center gap-2 rounded-full px-3.5 py-1 font-mono text-[11px] uppercase tracking-[0.22em] text-cyan-200">
-              Let&apos;s Build Something Extraordinary
+            <span className="glass-chip text-accent inline-flex items-center gap-2 rounded-full px-3.5 py-1 font-mono text-[11px] font-medium uppercase tracking-[0.2em]">
+              Let&apos;s Build Together
             </span>
-            <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
+            <h2 className="text-ink mt-4 font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
               Initiate <span className="text-prism">Collaboration</span>
             </h2>
-            <p className="mt-3 max-w-lg text-sm leading-relaxed text-slate-200/85 sm:text-base">
+            <p className="text-ink-secondary mt-3 max-w-lg text-sm leading-relaxed sm:text-base">
               Available in Dubai / UAE (On-site &amp; Hybrid) and globally for AI systems
               architecture, full-stack vibe coding, growth marketing, and interior design concepts.
             </p>
@@ -71,19 +71,19 @@ export default function ContactGlassPortal() {
             <div className="mt-7 space-y-3">
               <div className="glass-panel flex items-center justify-between rounded-2xl px-4 py-3">
                 <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 text-cyan-300" />
+                  <Mail className="text-accent h-4 w-4" />
                   <div>
-                    <div className="font-mono text-[10px] uppercase text-slate-400">Direct Email</div>
-                    <div className="text-sm font-semibold text-white">{PROFILE.contact.email}</div>
+                    <div className="text-ink-muted font-mono text-[10px] uppercase">Direct Email</div>
+                    <div className="text-ink text-sm font-semibold">{PROFILE.contact.email}</div>
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleCopy('email', PROFILE.contact.email)}
-                  className="glass-chip inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[11px] text-white hover:bg-white/20"
+                  className="glass-chip text-ink inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[11px] hover:opacity-85"
                 >
                   {copiedField === 'email' ? (
-                    <Check className="h-3.5 w-3.5 text-emerald-300" />
+                    <Check className="text-accent h-3.5 w-3.5" />
                   ) : (
                     <Copy className="h-3.5 w-3.5" />
                   )}
@@ -94,20 +94,20 @@ export default function ContactGlassPortal() {
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <div className="glass-panel flex items-center justify-between rounded-2xl px-4 py-3">
                   <div className="flex items-center gap-3">
-                    <Phone className="h-4 w-4 text-emerald-300" />
+                    <Phone className="text-accent h-4 w-4" />
                     <div>
-                      <div className="font-mono text-[10px] uppercase text-slate-400">UAE Mobile</div>
-                      <div className="text-sm font-semibold text-white">{PROFILE.contact.uaePhone}</div>
+                      <div className="text-ink-muted font-mono text-[10px] uppercase">UAE Mobile</div>
+                      <div className="text-ink text-sm font-semibold">{PROFILE.contact.uaePhone}</div>
                     </div>
                   </div>
                   <button
                     type="button"
                     onClick={() => handleCopy('uae', PROFILE.contact.uaePhone)}
                     aria-label="Copy UAE Mobile"
-                    className="glass-chip rounded-full p-2 text-white hover:bg-white/20"
+                    className="glass-chip text-ink rounded-full p-2 hover:opacity-85"
                   >
                     {copiedField === 'uae' ? (
-                      <Check className="h-3.5 w-3.5 text-emerald-300" />
+                      <Check className="text-accent h-3.5 w-3.5" />
                     ) : (
                       <Copy className="h-3.5 w-3.5" />
                     )}
@@ -116,20 +116,20 @@ export default function ContactGlassPortal() {
 
                 <div className="glass-panel flex items-center justify-between rounded-2xl px-4 py-3">
                   <div className="flex items-center gap-3">
-                    <Phone className="h-4 w-4 text-violet-300" />
+                    <Phone className="text-accent h-4 w-4" />
                     <div>
-                      <div className="font-mono text-[10px] uppercase text-slate-400">India Direct</div>
-                      <div className="text-sm font-semibold text-white">{PROFILE.contact.indiaPhone}</div>
+                      <div className="text-ink-muted font-mono text-[10px] uppercase">India Direct</div>
+                      <div className="text-ink text-sm font-semibold">{PROFILE.contact.indiaPhone}</div>
                     </div>
                   </div>
                   <button
                     type="button"
                     onClick={() => handleCopy('india', PROFILE.contact.indiaPhone)}
                     aria-label="Copy India Direct"
-                    className="glass-chip rounded-full p-2 text-white hover:bg-white/20"
+                    className="glass-chip text-ink rounded-full p-2 hover:opacity-85"
                   >
                     {copiedField === 'india' ? (
-                      <Check className="h-3.5 w-3.5 text-emerald-300" />
+                      <Check className="text-accent h-3.5 w-3.5" />
                     ) : (
                       <Copy className="h-3.5 w-3.5" />
                     )}
@@ -143,9 +143,9 @@ export default function ContactGlassPortal() {
                 href={PROFILE.contact.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-chip inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/20"
+                className="glass-chip text-ink inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold hover:opacity-85"
               >
-                <Linkedin className="h-4 w-4 text-sky-300" />
+                <Linkedin className="text-accent h-4 w-4" />
                 <span>LinkedIn</span>
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
@@ -153,9 +153,9 @@ export default function ContactGlassPortal() {
                 href={PROFILE.contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-chip inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/20"
+                className="glass-chip text-ink inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold hover:opacity-85"
               >
-                <Github className="h-4 w-4 text-violet-300" />
+                <Github className="text-accent h-4 w-4" />
                 <span>GitHub · RaqeebSyedCR7</span>
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
@@ -163,9 +163,9 @@ export default function ContactGlassPortal() {
                 href={PROFILE.contact.companySite}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-chip inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/20"
+                className="glass-chip text-ink inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold hover:opacity-85"
               >
-                <Globe2 className="h-4 w-4 text-cyan-300" />
+                <Globe2 className="text-accent h-4 w-4" />
                 <span>RAIZ HORIZON</span>
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
@@ -174,8 +174,8 @@ export default function ContactGlassPortal() {
 
           {/* Interactive Brief Composer Column */}
           <div className="glass-panel rounded-3xl p-5 sm:p-6 lg:col-span-6">
-            <h3 className="font-display text-lg font-bold text-white">Interactive Brief Composer</h3>
-            <p className="mt-1 text-xs text-slate-300">
+            <h3 className="text-ink font-display text-lg font-bold">Interactive Brief Composer</h3>
+            <p className="text-ink-muted mt-1 text-xs">
               Select a focus area and launch a pre-filled Email or UAE WhatsApp message.
             </p>
 
@@ -187,8 +187,8 @@ export default function ContactGlassPortal() {
                   onClick={() => setTopic(item)}
                   className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
                     topic === item
-                      ? 'bg-gradient-to-r from-cyan-300 to-violet-400 font-bold text-slate-950'
-                      : 'glass-chip text-slate-200 hover:bg-white/15'
+                      ? 'btn-accent font-semibold'
+                      : 'glass-chip text-ink-secondary hover:text-ink'
                   }`}
                 >
                   {item}
@@ -202,21 +202,21 @@ export default function ContactGlassPortal() {
                 value={senderName}
                 onChange={(e) => setSenderName(e.target.value)}
                 placeholder="Your Name / Company"
-                className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-400 outline-none focus:border-cyan-300/60"
+                className="border-glass-line bg-glass-subtle text-ink w-full rounded-2xl border px-4 py-3 text-sm placeholder:opacity-55 outline-none focus:border-[var(--accent)]"
               />
               <textarea
                 rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Tell me about your role, AI workflow, design concept, or website idea..."
-                className="w-full resize-none rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-400 outline-none focus:border-cyan-300/60"
+                className="border-glass-line bg-glass-subtle text-ink w-full resize-none rounded-2xl border px-4 py-3 text-sm placeholder:opacity-55 outline-none focus:border-[var(--accent)]"
               />
             </div>
 
             <div className="mt-4 flex flex-wrap gap-3">
               <a
                 href={mailtoHref}
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-300 via-violet-400 to-pink-400 px-5 py-3 text-xs font-bold text-slate-950 transition hover:brightness-110"
+                className="btn-accent inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3 text-xs font-semibold"
               >
                 <Send className="h-4 w-4" />
                 <span>Send via Email</span>
@@ -225,9 +225,9 @@ export default function ContactGlassPortal() {
                 href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-chip inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3 text-xs font-semibold text-emerald-200 transition hover:bg-white/20"
+                className="glass-chip text-ink inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3 text-xs font-semibold hover:opacity-85"
               >
-                <MessageCircle className="h-4 w-4" />
+                <MessageCircle className="text-accent h-4 w-4" />
                 <span>WhatsApp UAE</span>
               </a>
             </div>
@@ -235,7 +235,7 @@ export default function ContactGlassPortal() {
         </div>
       </GlassCard>
 
-      <footer className="mt-10 flex flex-col items-center justify-between gap-3 px-2 font-mono text-xs text-slate-400 sm:flex-row">
+      <footer className="text-ink-muted mt-10 flex flex-col items-center justify-between gap-3 px-2 font-mono text-xs sm:flex-row">
         <span>© {new Date().getFullYear()} S. Abdul Raqeeb · Built with Three.js + React + Glassmorphism</span>
         <span>Press Ctrl+K anywhere to launch Command Palette</span>
       </footer>

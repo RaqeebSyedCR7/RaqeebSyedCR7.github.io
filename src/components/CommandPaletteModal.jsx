@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowUpRight, Check, Copy, Palette, Search, Sparkles, X } from 'lucide-react';
+import { ArrowUpRight, Check, Copy, CornerDownLeft, Palette, Search, X } from 'lucide-react';
 import { PROFILE } from '../data/portfolioData';
 import { PRISM_THEMES } from '../data/themes';
 
@@ -63,7 +63,7 @@ export default function CommandPaletteModal({ open, onClose, themeId, onThemeCha
       },
       ...Object.values(PRISM_THEMES).map((t) => ({
         id: `theme-${t.id}`,
-        group: 'Prism Mood',
+        group: 'Theme',
         label: `Activate ${t.label} Glass Theme${themeId === t.id ? ' (Active)' : ''}`,
         themeTarget: t.id,
       })),
@@ -112,26 +112,27 @@ export default function CommandPaletteModal({ open, onClose, themeId, onThemeCha
       role="dialog"
       aria-modal="true"
       aria-label="Command Palette"
-      className="fixed inset-0 z-50 flex items-start justify-center bg-black/65 px-4 pt-24 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-24 backdrop-blur-md"
+      style={{ background: 'var(--modal-backdrop)' }}
       onClick={onClose}
     >
       <div
         className="glass-panel-strong prism-border-beam w-full max-w-xl overflow-hidden rounded-3xl p-4"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center gap-3 border-b border-white/15 pb-3">
-          <Search className="h-4 w-4 text-cyan-300" />
+        <div className="border-glass-line flex items-center gap-3 border-b pb-3">
+          <Search className="text-accent h-4 w-4" />
           <input
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search sections, copy contact, or switch prism mood..."
-            className="w-full bg-transparent text-sm text-white placeholder-slate-400 outline-none"
+            placeholder="Search sections, copy contact, or switch glass theme..."
+            className="text-ink w-full bg-transparent text-sm placeholder:opacity-55 outline-none"
           />
           <button
             type="button"
             onClick={onClose}
-            className="glass-chip rounded-full p-1.5 text-slate-300 hover:text-white"
+            className="glass-chip text-ink-muted hover:text-ink rounded-full p-1.5"
             aria-label="Close command palette"
           >
             <X className="h-4 w-4" />
@@ -140,33 +141,33 @@ export default function CommandPaletteModal({ open, onClose, themeId, onThemeCha
 
         <div className="mt-3 max-h-80 space-y-1 overflow-y-auto pr-1">
           {filtered.length === 0 ? (
-            <p className="py-6 text-center text-xs text-slate-400">No matching commands found.</p>
+            <p className="text-ink-muted py-6 text-center text-xs">No matching commands found.</p>
           ) : (
             filtered.map((item) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => triggerAction(item)}
-                className="flex w-full items-center justify-between rounded-2xl px-3.5 py-2.5 text-left text-sm text-slate-100 transition hover:bg-white/12"
+                className="text-ink hover:bg-accent-soft flex w-full items-center justify-between rounded-2xl px-3.5 py-2.5 text-left text-sm transition"
               >
                 <div className="flex items-center gap-2.5">
-                  <span className="rounded-lg bg-white/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-cyan-200">
+                  <span className="bg-glass-subtle text-accent rounded-lg px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider">
                     {item.group}
                   </span>
                   <span>{item.label}</span>
                 </div>
                 {item.copyValue ? (
                   copiedKey === item.id ? (
-                    <Check className="h-4 w-4 text-emerald-300" />
+                    <Check className="text-accent h-4 w-4" />
                   ) : (
-                    <Copy className="h-4 w-4 text-slate-400" />
+                    <Copy className="text-ink-muted h-4 w-4" />
                   )
                 ) : item.themeTarget ? (
-                  <Palette className="h-4 w-4 text-violet-300" />
+                  <Palette className="text-accent h-4 w-4" />
                 ) : item.external ? (
-                  <ArrowUpRight className="h-4 w-4 text-cyan-300" />
+                  <ArrowUpRight className="text-accent h-4 w-4" />
                 ) : (
-                  <Sparkles className="h-4 w-4 text-slate-400" />
+                  <CornerDownLeft className="text-ink-muted h-3.5 w-3.5" />
                 )}
               </button>
             ))
