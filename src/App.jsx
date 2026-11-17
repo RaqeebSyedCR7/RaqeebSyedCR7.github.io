@@ -12,15 +12,19 @@ import ProjectsShowcase from './components/ProjectsShowcase';
 import SkillsCredentialsVault from './components/SkillsCredentialsVault';
 
 /**
- * Root Maximalist Glassmorphism Portfolio Application.
+ * Root Maximalist Glassmorphism Portfolio Application with Quiet-Luxury Architectural Themes.
  */
 export default function App() {
-  const [themeId, setThemeId] = useState('cosmic');
+  const [themeId, setThemeId] = useState('paper');
   const [cmdOpen, setCmdOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', themeId);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute('content', themeId === 'paper' ? '#F4F6F6' : themeId === 'slate' ? '#0C1015' : '#13110E');
+    }
   }, [themeId]);
 
   useEffect(() => {

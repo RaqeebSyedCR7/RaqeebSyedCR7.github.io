@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 
 /**
- * Reusable interactive glassmorphism panel featuring pointer-tracked specular glare,
- * subtle 3D micro-tilt, and optional animated conic-gradient prism rim lighting.
+ * Reusable interactive glassmorphism panel featuring smooth pointer-tracked specular glare
+ * and subtle damped 3D micro-tilt.
  */
 export default function GlassCard({
   children,
@@ -22,8 +22,8 @@ export default function GlassCard({
     const rect = ref.current.getBoundingClientRect();
     const px = ((e.clientX - rect.left) / rect.width) * 100;
     const py = ((e.clientY - rect.top) / rect.height) * 100;
-    const rx = tilt ? ((py - 50) / 50) * -4.5 : 0;
-    const ry = tilt ? ((px - 50) / 50) * 4.5 : 0;
+    const rx = tilt ? ((py - 50) / 50) * -2.8 : 0;
+    const ry = tilt ? ((px - 50) / 50) * 2.8 : 0;
     setCoords({ x: px, y: py, rx, ry, active: true });
   };
 
@@ -43,22 +43,21 @@ export default function GlassCard({
       style={{
         transform:
           tilt && coords.active
-            ? `perspective(1100px) rotateX(${coords.rx}deg) rotateY(${coords.ry}deg) translateZ(0)`
-            : 'perspective(1100px) rotateX(0deg) rotateY(0deg) translateZ(0)',
+            ? `perspective(1200px) rotateX(${coords.rx}deg) rotateY(${coords.ry}deg) translateZ(0)`
+            : 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0)',
         transition: coords.active
-          ? 'transform 120ms ease-out, border-color 250ms ease'
-          : 'transform 450ms cubic-bezier(0.22, 1, 0.36, 1), border-color 250ms ease',
+          ? 'transform 160ms cubic-bezier(0.22, 1, 0.36, 1), border-color 220ms ease'
+          : 'transform 520ms cubic-bezier(0.22, 1, 0.36, 1), border-color 220ms ease',
       }}
       className={`${baseClass} ${beamClass} overflow-hidden rounded-3xl ${className}`}
       {...props}
     >
-      {/* Dynamic pointer-tracking inner specular sheen */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 rounded-[inherit] transition-opacity duration-300"
         style={{
           opacity: coords.active ? 1 : 0,
-          background: `radial-gradient(460px circle at ${coords.x}% ${coords.y}%, rgba(255,255,255,0.16), transparent 55%)`,
+          background: `radial-gradient(460px circle at ${coords.x}% ${coords.y}%, var(--specular-glare), transparent 60%)`,
         }}
       />
       <div className="relative z-10 h-full">{children}</div>

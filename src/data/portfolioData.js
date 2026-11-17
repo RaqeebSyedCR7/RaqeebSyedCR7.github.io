@@ -33,37 +33,31 @@ export const IMPACT_KPIS = [
     value: '+40%',
     label: 'Client Growth Spearheaded',
     source: 'RAIZ HORIZON · UAE',
-    accent: 'from-cyan-400 to-teal-300',
   },
   {
     value: '-60%',
     label: 'Patch Downtime Reduced',
     source: 'CGI · Daimler Multi-Country DBs',
-    accent: 'from-violet-400 to-fuchsia-400',
   },
   {
     value: '+85%',
     label: 'Software Efficiency Gain',
     source: 'CGI · Threshold Monitoring',
-    accent: 'from-pink-400 to-rose-400',
   },
   {
     value: '-40%',
     label: 'Query Latency & Manual Ops',
     source: '50+ DAX Functions & Automation',
-    accent: 'from-sky-400 to-indigo-400',
   },
   {
     value: '10',
     label: 'Autonomous AI Agents Live',
     source: 'Paperclip + n8n + Postgres ERP',
-    accent: 'from-amber-300 to-orange-400',
   },
   {
     value: '8.9',
     label: 'BCA CGPA · Sports Boy 2019',
     source: 'Bengaluru City University',
-    accent: 'from-emerald-300 to-cyan-400',
   },
 ];
 
@@ -97,7 +91,6 @@ export const SERVICES = [
     description:
       'End-to-end rapid product engineering, multi-agent Paperclip/n8n orchestrators, custom React + Three.js experiences, and zero-lock-in cloud deployments.',
     tags: ['React + Vite', 'Three.js WebGL', 'Multi-Agent AI', 'n8n & Postgres'],
-    variant: 'prism',
   },
   {
     id: 'marketing',
@@ -106,7 +99,6 @@ export const SERVICES = [
     description:
       'Full-funnel growth architecture combining SEO technical content engines, automated 4K video/reel distribution across LinkedIn, Meta & YouTube, and high-ticket B2B closing.',
     tags: ['B2B Growth (+40%)', 'Omni-Channel Funnels', 'SEO Content Engines', 'Client Acquisition'],
-    variant: 'cyan',
   },
   {
     id: 'interior',
@@ -115,7 +107,6 @@ export const SERVICES = [
     description:
       'Spatial composition thinking spanning architectural layouts, lighting harmony, and physical-to-3D environment visualization honed alongside industrial spatial engineering.',
     tags: ['Spatial Flow', '3D Visualization', 'Material Aesthetics', 'Modern Concepts'],
-    variant: 'magenta',
   },
   {
     id: 'ops-data',
@@ -124,7 +115,6 @@ export const SERVICES = [
     description:
       'Mission-critical database maintenance, ETL pipelines, DAX performance modeling, and automated inventory/order orchestration built for zero-error execution.',
     tags: ['Daimler DB Ops', 'Power BI & Tableau', 'ETL Pipelines', 'Inventory Automation'],
-    variant: 'gold',
   },
 ];
 
@@ -152,7 +142,6 @@ export const PROJECTS = [
     stack: ['React 18', 'Vite 6', 'Three.js', 'Tailwind CSS', 'Framer Motion', 'Cloudflare Pages'],
     liveUrl: 'https://raizhorizon.com',
     visualType: 'rack3d',
-    gradient: 'from-cyan-400/30 via-blue-500/20 to-violet-500/30',
   },
   {
     id: 'paperclip-n8n',
@@ -177,7 +166,6 @@ export const PROJECTS = [
     stack: ['Node.js', 'Paperclip AI', 'n8n Workflows', 'PostgreSQL', 'FFmpeg', 'Meta & LinkedIn APIs'],
     liveUrl: 'https://raizhorizon.com/blog',
     visualType: 'agents',
-    gradient: 'from-violet-500/30 via-fuchsia-500/20 to-pink-500/30',
   },
   {
     id: 'graphify-kg',
@@ -201,7 +189,6 @@ export const PROJECTS = [
     stack: ['Python', 'GraphRAG', 'AST Parsing', 'NetworkX', 'Interactive HTML Canvas'],
     liveUrl: null,
     visualType: 'graph',
-    gradient: 'from-emerald-400/25 via-cyan-500/20 to-indigo-500/30',
   },
   {
     id: 'netflix-tableau',
@@ -225,7 +212,6 @@ export const PROJECTS = [
     stack: ['Tableau', 'Data Modeling', 'Geo Mapping', 'Interactive Filtering', 'Visual Storytelling'],
     liveUrl: null,
     visualType: 'tableau',
-    gradient: 'from-rose-500/30 via-amber-500/20 to-purple-500/30',
   },
   {
     id: 'family-tree',
@@ -249,7 +235,6 @@ export const PROJECTS = [
     stack: ['HTML5', 'CSS3 Animations', 'JavaScript', 'LocalStorage API', 'GitHub Pages'],
     liveUrl: 'https://github.com/RaqeebSyedCR7/Familytree.github.io',
     visualType: 'tree',
-    gradient: 'from-amber-400/25 via-emerald-400/20 to-cyan-500/30',
   },
 ];
 
@@ -346,7 +331,6 @@ export const SKILL_GROUPS = [
   {
     id: 'ai-dev',
     label: 'AI, Vibe Coding & Web 3D',
-    color: 'cyan',
     skills: [
       'Vibe Coding',
       'AI Agent Orchestration',
@@ -365,7 +349,6 @@ export const SKILL_GROUPS = [
   {
     id: 'data-bi',
     label: 'Data Science, BI & Databases',
-    color: 'violet',
     skills: [
       'Microsoft Power BI',
       'DAX (50+ Functions)',
@@ -384,7 +367,6 @@ export const SKILL_GROUPS = [
   {
     id: 'ops-strategy',
     label: 'Operations, Growth & Design',
-    color: 'pink',
     skills: [
       'Marketing Strategy',
       'Interior Design',

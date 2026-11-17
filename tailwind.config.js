@@ -4,21 +4,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Syne"', 'sans-serif'],
-        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        display: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
       },
       animation: {
-        'float-slow': 'floatSlow 12s ease-in-out infinite',
-        'spin-slow': 'spin 18s linear infinite',
-        'marquee-left': 'marqueeLeft 34s linear infinite',
-        'marquee-right': 'marqueeRight 38s linear infinite',
-        'prism-shift': 'prismShift 8s ease-in-out infinite alternate',
+        'float-slow': 'floatSlow 16s ease-in-out infinite',
+        'marquee-left': 'marqueeLeft 42s linear infinite',
+        'marquee-right': 'marqueeRight 46s linear infinite',
       },
       keyframes: {
         floatSlow: {
           '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(1)' },
-          '50%': { transform: 'translate3d(18px, -22px, 0) scale(1.06)' },
+          '50%': { transform: 'translate3d(14px, -18px, 0) scale(1.04)' },
         },
         marqueeLeft: {
           '0%': { transform: 'translateX(0%)' },
@@ -27,10 +25,6 @@ export default {
         marqueeRight: {
           '0%': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0%)' },
-        },
-        prismShift: {
-          '0%': { backgroundPosition: '0% 50%' },
-          '100%': { backgroundPosition: '100% 50%' },
         },
       },
     },

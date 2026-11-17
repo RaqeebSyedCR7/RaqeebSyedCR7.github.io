@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 /**
- * Ambient pointer-following radial glow enhancing depth across glass surfaces.
+ * Subtle pointer-following radial ambient aura matching the active theme accent.
  */
 export default function GlobalCursorAura() {
   const [pos, setPos] = useState({ x: -300, y: -300 });
@@ -17,7 +17,7 @@ export default function GlobalCursorAura() {
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-[1] hidden transition-opacity duration-300 lg:block"
       style={{
-        background: `radial-gradient(520px circle at ${pos.x}px ${pos.y}px, rgba(0, 245, 212, 0.085), rgba(139, 92, 246, 0.055) 38%, transparent 72%)`,
+        background: `radial-gradient(500px circle at ${pos.x}px ${pos.y}px, var(--accent-soft), transparent 70%)`,
       }}
     />
   );

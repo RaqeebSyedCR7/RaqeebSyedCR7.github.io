@@ -3,10 +3,10 @@ import * as THREE from 'three';
 import { PRISM_THEMES } from '../data/themes';
 
 /**
- * Full-bleed interactive WebGL background featuring refractive glass crystal polyhedra,
- * iridescent wireframe lattices, orbital rings, and a cosmic particle starfield.
+ * Full-bleed interactive WebGL background rendering an understated frosted architectural
+ * glass polyhedron, wireframe lattice, orbital rings, and damped particle field.
  */
-export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
+export default function CosmicGlassCanvas({ themeId = 'paper' }) {
   const mountRef = useRef(null);
   const refs = useRef({});
   const initialThemeRef = useRef(themeId);
@@ -33,64 +33,63 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
     const camera = new THREE.PerspectiveCamera(48, width / height, 0.1, 100);
     camera.position.set(0, 0, 12);
 
-    const palette = PRISM_THEMES[initialThemeRef.current]?.three || PRISM_THEMES.cosmic.three;
+    const palette = PRISM_THEMES[initialThemeRef.current]?.three || PRISM_THEMES.paper.three;
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.75);
-    const lightA = new THREE.PointLight(palette.lightA, 28, 30);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.9);
+    const lightA = new THREE.PointLight(palette.lightA, 18, 30);
     lightA.position.set(5, 4, 6);
-    const lightB = new THREE.PointLight(palette.lightB, 28, 30);
+    const lightB = new THREE.PointLight(palette.lightB, 16, 30);
     lightB.position.set(-5, -3, 5);
-    const lightC = new THREE.PointLight(palette.lightC, 22, 30);
+    const lightC = new THREE.PointLight(palette.lightC, 14, 30);
     lightC.position.set(0, 6, -4);
     scene.add(ambient, lightA, lightB, lightC);
 
     const group = new THREE.Group();
     scene.add(group);
 
-    // Core faceted holographic glass prism (lightweight single-pass transparent material)
+    // Core faceted frosted glass polyhedron
     const crystalGeo = new THREE.IcosahedronGeometry(2.1, 1);
     const crystalMat = new THREE.MeshPhysicalMaterial({
       color: palette.wireA,
       emissive: palette.wireB,
-      emissiveIntensity: 0.28,
-      roughness: 0.14,
-      metalness: 0.35,
-      iridescence: 1.0,
+      emissiveIntensity: 0.12,
+      roughness: 0.18,
+      metalness: 0.2,
       clearcoat: 1.0,
       transparent: true,
-      opacity: 0.22,
+      opacity: palette.crystalOpacity,
     });
     const crystalMesh = new THREE.Mesh(crystalGeo, crystalMat);
     const crystalWireMat = new THREE.MeshBasicMaterial({
       color: palette.wireA,
       wireframe: true,
       transparent: true,
-      opacity: 0.34,
+      opacity: palette.wireOpacity,
     });
     const crystalWire = new THREE.Mesh(crystalGeo, crystalWireMat);
     group.add(crystalMesh, crystalWire);
 
-    // Outer holographic wireframe cage
-    const cageGeo = new THREE.TorusKnotGeometry(3.35, 0.11, 140, 20, 2, 3);
+    // Subtle architectural torus knot lattice
+    const cageGeo = new THREE.TorusKnotGeometry(3.4, 0.085, 130, 16, 2, 3);
     const cageMat = new THREE.MeshStandardMaterial({
       color: palette.wireA,
       emissive: palette.wireA,
-      emissiveIntensity: 0.65,
+      emissiveIntensity: 0.25,
       wireframe: true,
       transparent: true,
-      opacity: 0.34,
+      opacity: palette.wireOpacity * 0.85,
     });
     const cageMesh = new THREE.Mesh(cageGeo, cageMat);
     group.add(cageMesh);
 
-    // Orbital prism rings
-    const ringGeo = new THREE.TorusGeometry(4.6, 0.03, 16, 120);
+    // Thin orbital rings
+    const ringGeo = new THREE.TorusGeometry(4.6, 0.02, 16, 120);
     const ringMat = new THREE.MeshStandardMaterial({
       color: palette.wireB,
       emissive: palette.wireB,
-      emissiveIntensity: 0.85,
+      emissiveIntensity: 0.3,
       transparent: true,
-      opacity: 0.45,
+      opacity: palette.ringOpacity,
     });
     const ringA = new THREE.Mesh(ringGeo, ringMat);
     ringA.rotation.x = Math.PI / 3;
@@ -99,19 +98,19 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
     ringB.scale.setScalar(1.16);
     group.add(ringA, ringB);
 
-    // Satellite glass shards
-    const shardGeo = new THREE.OctahedronGeometry(0.45, 0);
+    // Floating geometric shards
+    const shardGeo = new THREE.OctahedronGeometry(0.4, 0);
     const shards = [];
     for (let i = 0; i < 8; i += 1) {
       const shard = new THREE.Mesh(shardGeo, crystalMat);
       const angle = (i / 8) * Math.PI * 2;
       shard.position.set(Math.cos(angle) * 5.4, Math.sin(angle * 2) * 1.9, Math.sin(angle) * 3.2);
-      shards.push({ mesh: shard, angle, speed: 0.25 + (i % 3) * 0.12 });
+      shards.push({ mesh: shard, angle, speed: 0.16 + (i % 3) * 0.07 });
       group.add(shard);
     }
 
-    // Cosmic starfield lattice
-    const particleCount = 650;
+    // Subtle spatial particles
+    const particleCount = 460;
     const positions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i += 1) {
       positions[i * 3] = (Math.random() - 0.5) * 36;
@@ -122,9 +121,9 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
     particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     const particleMat = new THREE.PointsMaterial({
       color: palette.particles,
-      size: 0.065,
+      size: 0.06,
       transparent: true,
-      opacity: 0.72,
+      opacity: 0.45,
     });
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
@@ -156,34 +155,34 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
       const t = clock.getElapsedTime();
       const scrollRatio = window.scrollY / Math.max(document.body.scrollHeight - window.innerHeight, 1);
 
-      pointer.x += (pointer.tx - pointer.x) * 0.045;
-      pointer.y += (pointer.ty - pointer.y) * 0.045;
+      pointer.x += (pointer.tx - pointer.x) * 0.035;
+      pointer.y += (pointer.ty - pointer.y) * 0.035;
 
       if (!prefersReduced) {
-        crystalMesh.rotation.x = t * 0.16 + pointer.y * 0.35;
-        crystalMesh.rotation.y = t * 0.22 + pointer.x * 0.45;
+        crystalMesh.rotation.x = t * 0.1 + pointer.y * 0.25;
+        crystalMesh.rotation.y = t * 0.14 + pointer.x * 0.3;
         crystalWire.rotation.copy(crystalMesh.rotation);
-        cageMesh.rotation.x = -t * 0.1 + scrollRatio * 1.4;
-        cageMesh.rotation.y = t * 0.15;
-        ringA.rotation.z = t * 0.18;
-        ringB.rotation.x = -t * 0.14;
-        particles.rotation.y = t * 0.025 + pointer.x * 0.08;
+        cageMesh.rotation.x = -t * 0.06 + scrollRatio * 1.1;
+        cageMesh.rotation.y = t * 0.09;
+        ringA.rotation.z = t * 0.11;
+        ringB.rotation.x = -t * 0.09;
+        particles.rotation.y = t * 0.018 + pointer.x * 0.05;
 
         shards.forEach((s) => {
           const a = s.angle + t * s.speed;
           s.mesh.position.x = Math.cos(a) * 5.2;
           s.mesh.position.z = Math.sin(a) * 3.4;
-          s.mesh.rotation.x += 0.01;
-          s.mesh.rotation.y += 0.012;
+          s.mesh.rotation.x += 0.006;
+          s.mesh.rotation.y += 0.008;
         });
 
-        lightA.position.x = Math.sin(t * 0.5) * 6;
-        lightB.position.y = Math.cos(t * 0.4) * 5;
+        lightA.position.x = Math.sin(t * 0.35) * 6;
+        lightB.position.y = Math.cos(t * 0.3) * 5;
       }
 
-      group.position.x = pointer.x * 0.75 + Math.sin(scrollRatio * Math.PI) * 1.2;
-      group.position.y = pointer.y * 0.5 - scrollRatio * 1.2;
-      camera.position.z = 12 - scrollRatio * 2.2;
+      group.position.x = pointer.x * 0.55 + Math.sin(scrollRatio * Math.PI) * 0.9;
+      group.position.y = pointer.y * 0.38 - scrollRatio * 0.9;
+      camera.position.z = 12 - scrollRatio * 1.8;
       camera.lookAt(0, 0, 0);
 
       renderer.render(scene, camera);
@@ -212,7 +211,6 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
     };
   }, []);
 
-  // Update WebGL shader & light colors seamlessly when user switches Prism Mood theme
   useEffect(() => {
     const palette = PRISM_THEMES[themeId]?.three;
     const { lightA, lightB, lightC, cageMat, ringMat, particleMat, crystalMat, crystalWireMat } = refs.current;
@@ -222,33 +220,35 @@ export default function CosmicGlassCanvas({ themeId = 'cosmic' }) {
     lightC.color.setHex(palette.lightC);
     cageMat.color.setHex(palette.wireA);
     cageMat.emissive.setHex(palette.wireA);
+    cageMat.opacity = palette.wireOpacity * 0.85;
     ringMat.color.setHex(palette.wireB);
     ringMat.emissive.setHex(palette.wireB);
+    ringMat.opacity = palette.ringOpacity;
     particleMat.color.setHex(palette.particles);
     crystalMat.color.setHex(palette.wireA);
     crystalMat.emissive.setHex(palette.wireB);
+    crystalMat.opacity = palette.crystalOpacity;
     crystalWireMat.color.setHex(palette.wireA);
+    crystalWireMat.opacity = palette.wireOpacity;
   }, [themeId]);
 
-  const theme = PRISM_THEMES[themeId] || PRISM_THEMES.cosmic;
+  const theme = PRISM_THEMES[themeId] || PRISM_THEMES.paper;
 
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      {/* Ambient Chromatic Gradient Orbs behind frosted glass */}
       <div
         className="animate-float-slow absolute -left-32 -top-32 h-[540px] w-[540px] rounded-full blur-3xl transition-all duration-700"
         style={{ background: theme.orbs[0] }}
       />
       <div
         className="animate-float-slow absolute -right-24 top-1/4 h-[620px] w-[620px] rounded-full blur-3xl transition-all duration-700"
-        style={{ background: theme.orbs[1], animationDelay: '-4s' }}
+        style={{ background: theme.orbs[1], animationDelay: '-5s' }}
       />
       <div
         className="animate-float-slow absolute bottom-[-160px] left-1/3 h-[560px] w-[560px] rounded-full blur-3xl transition-all duration-700"
-        style={{ background: theme.orbs[2], animationDelay: '-8s' }}
+        style={{ background: theme.orbs[2], animationDelay: '-9s' }}
       />
 
-      {/* Architectural Grid + Tactile Noise */}
       <div className="cosmic-grid absolute inset-0 opacity-75" />
       <div ref={mountRef} className="absolute inset-0" />
       <div className="noise-overlay absolute inset-0" />
